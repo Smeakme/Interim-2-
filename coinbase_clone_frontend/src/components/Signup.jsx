@@ -6,7 +6,7 @@ import businessIcon from '../assets/signup/business.svg';
 import developerIcon from '../assets/signup/developer.svg';
 import { FaCheck } from 'react-icons/fa6';
 
-const API = `${import.meta.env.VITE_API_URL}/auth`;
+const API = `${import.meta.env.VITE_API_URL}/api/auth`;
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -48,6 +48,7 @@ const Signup = () => {
             const res = await fetch(`${API}/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ name, email, password }),
             });
             const data = await res.json();

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const API = `${import.meta.env.VITE_API_URL}/auth`;
+const API = `${import.meta.env.VITE_API_URL}/api/auth`;
 
 const Profile = () => {
     const navigate = useNavigate();

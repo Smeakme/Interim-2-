@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import coinbaseBlack from '../assets/coinbase-black.png';
 import { FaApple, FaGoogle, FaKey } from 'react-icons/fa6';
 
-const API = `${import.meta.env.VITE_API_URL}/auth`;
+const API = `${import.meta.env.VITE_API_URL}/api/auth`;
 
 const Signin = () => {
     const navigate = useNavigate();
