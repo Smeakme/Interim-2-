@@ -9,15 +9,15 @@ import CryptoBasics from './components/CryptoBasics';
 import CTA from './components/CTA';
 import LegalDisclosure from './components/LegalDisclosure';
 import Footer from './components/Footer';
+import Signup from './components/Signup';
+import Signin from './components/Signin';
 import Explore from './pages/Explore';
+import Learn from './pages/Learn';
 import AssetDetail from './pages/AssetDetail';
 import Profile from './pages/Profile';
 import AddCrypto from './pages/AddCrypto';
 import ProjectBanner from './components/ProjectBanner';
 import FooterDisclaimer from './components/FooterDisclaimer';
-import Learn from './pages/Learn';
-import Signup from './components/Signup';
-import Signin from './components/Signin';
 
 const HomePage = () => (
   <>
@@ -32,10 +32,9 @@ const HomePage = () => (
   </>
 );
 
-
 const AppContent = () => {
   const location = useLocation();
-  const isAuthPage = location.pathname === '/signup' || location.pathname === '/signin';
+  const isAuthPage = location.pathname === '/signup' || location.pathname === '/signin' || location.pathname === '/profile' || location.pathname === '/add-crypto';
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">

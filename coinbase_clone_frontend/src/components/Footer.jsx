@@ -34,7 +34,7 @@ const Footer = () => {
                         <div className="mt-10">
                             <h4 className="font-bold uppercase text-[11px] mb-4">Learn</h4>
                             <ul className="flex flex-col gap-2 text-gray-600">
-                                <li><a href="/explore">Explore</a></li>
+                                <li><a href="#">Explore</a></li>
                                 <li><a href="#">Market statistics</a></li>
                                 <li><a href="#">Coinbase Bytes newsletter</a></li>
                                 <li><a href="#">Crypto basics</a></li>
@@ -125,10 +125,10 @@ const Footer = () => {
                         <div className="mt-10">
                             <h4 className="font-bold uppercase text-[11px] mb-4">Asset prices</h4>
                             <ul className="flex flex-col gap-2 text-gray-600">
-                                <li><a href="/price/bitcoin">Bitcoin price</a></li>
-                                <li><a href="/price/ethereum">Ethereum price</a></li>
-                                <li><a href="/price/solana">Solana price</a></li>
-                                <li><a href="/price/xrp">XRP price</a></li>
+                                <li><a href="#">Bitcoin price</a></li>
+                                <li><a href="#">Ethereum price</a></li>
+                                <li><a href="#">Solana price</a></li>
+                                <li><a href="#">XRP price</a></li>
                             </ul>
                         </div>
                         <div className="mt-10">
@@ -144,6 +144,7 @@ const Footer = () => {
 
                 </div>
 
+
                 {/* 2. Icons Row (Placed under the logo column area) */}
                 <div className="flex justify-start gap-4 text-xl text-gray-500 mt-12 mb-6">
                     <a href="#"><FaXTwitter /></a>
@@ -156,18 +157,20 @@ const Footer = () => {
                 <hr className="border-gray-100 mb-8" />
 
                 {/* 4. Legal Info */}
-                <div className="flex flex-wrap items-center justify-start gap-2 md:gap-4 text-xs md:text-sm text-gray-400 font-medium">
-                    <p>© 2026 Coinbase</p>
-                    <span className="hidden sm:inline">•</span>
-                    <a href="#" className="hover:text-black transition-colors">Privacy</a>
-                    <span className="hidden sm:inline">•</span>
-                    <a href="#" className="hover:text-black transition-colors">Terms & Conditions</a>
-                </div>
-                <div className="flex items-center gap-2 hover:text-black cursor-pointer transition-colors">
+                <div className="flex flex-wrap items-center justify-between gap-4 text-xs md:text-sm text-gray-400 font-medium pb-8 md:pb-0">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-4">
+                        <p>© 2026 Coinbase</p>
+                        <span className="hidden sm:inline">•</span>
+                        <a href="#" className="hover:text-black transition-colors">Privacy</a>
+                        <span className="hidden sm:inline">•</span>
+                        <a href="#" className="hover:text-black transition-colors">Terms & Conditions</a>
+                    </div>
+                    <div className="flex items-center gap-2 hover:text-black cursor-pointer transition-colors">
                         <FiGlobe className="text-base" />
                         <span className="font-bold">Global</span>
                         <span>•</span>
                         <span className="font-bold">English</span>
+                    </div>
                 </div>
 
             </div>

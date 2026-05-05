@@ -21,3 +21,4 @@ const LegalDisclosure = () => {
 };
 
 export default LegalDisclosure;
+

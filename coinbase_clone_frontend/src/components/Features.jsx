@@ -19,9 +19,10 @@ const Features = () => {
             {/* 2. Content side (Right) */}
             <div className="flex flex-col gap-6 lg:gap-8 max-w-2xl text-left order-1 lg:order-2">
                 <div className="flex flex-col gap-4 lg:gap-6 items-start">
-                    <h2 className="text-5xl md:text-4xl font-extrabold text-black leading-[1.1] md:leading-tight">
-                       Powerful tools, designed <br className="md:hidden"/>
-                       for the advanced trader.
+                    <h2 className="text-4xl md:text-4xl font-extrabold text-black leading-[1.1] md:leading-tight lg:whitespace-nowrap">
+                        Powerful tools, <br className="md:hidden" />
+                        designed for the <br className="md:hidden" />
+                        advanced trader.
                     </h2>
                     <p className="text-base md:text-lg text-gray-500 leading-relaxed font-medium">
                         Powerful analytical tools with the safety and security of Coinbase deliver the ultimate trading experience. Tap into sophisticated charting capabilities, real-time order books, and deep liquidity across hundreds of markets.

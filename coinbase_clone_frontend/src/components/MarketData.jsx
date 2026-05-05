@@ -23,41 +23,36 @@ const MarketData = () => {
     useEffect(() => {
         const fetchMarketData = async () => {
             setError(null);
+            setIsLoading(true);
             try {
-                let url = '';
-                if (activeFilter === 'tradable') {
-                    url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false';
-                } else if (activeFilter === 'gainers') {
-                    url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=price_change_percentage_24h_desc&per_page=5&page=1&sparkline=false';
-                } else if (activeFilter === 'new') {
-                    url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=gecko_desc&per_page=5&page=1&sparkline=false';
-                }
+                let url = `${import.meta.env.VITE_API_URL}/crypto`;
+                if (activeFilter === 'gainers') url = `${import.meta.env.VITE_API_URL}/crypto/gainers`;
+                if (activeFilter === 'new') url = `${import.meta.env.VITE_API_URL}/crypto/new`;
 
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('API limit reached or network error');
+                if (!response.ok) throw new Error('Failed to fetch');
                 const data = await response.json();
 
-                const mappedData = data.map(coin => ({
+                // backend returns { cryptos } or { gainers } or { newListings }
+                const list = data.cryptos || data.gainers || data.newListings || [];
+
+                const mappedData = list.map(coin => ({
                     name: coin.name,
                     symbol: coin.symbol,
                     icon: getCoinIcon(coin.symbol),
-                    price: coin.current_price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-                    change: coin.price_change_percentage_24h ? coin.price_change_percentage_24h.toFixed(2) : '0.00'
+                    price: Number(coin.price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+                    change: Number(coin.change24h).toFixed(2),
                 }));
 
                 setAssets(mappedData);
-                setIsLoading(false);
             } catch (err) {
                 console.error(err);
                 setError('Failed to load data. Please try again later.');
             }
+            setIsLoading(false);
         };
 
-        setIsLoading(true);
         fetchMarketData();
-
-        const interval = setInterval(fetchMarketData, 30000); // Refresh every 30 seconds
-        return () => clearInterval(interval);
     }, [activeFilter]);
 
     return (

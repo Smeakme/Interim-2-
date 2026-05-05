@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import coinbaseBlack from '../assets/coinbase-black.png';
-import { FaApple, FaGoogle, FaKey } from 'react-icons/fa6';
+import { FaApple, FaGoogle, FaKey, FaEye, FaEyeSlash } from 'react-icons/fa6';
 
-const API = `${import.meta.env.VITE_API_URL}/api/auth`;
+const API = `${import.meta.env.VITE_API_URL}/auth`;
 
 const Signin = () => {
     const navigate = useNavigate();
@@ -15,6 +15,7 @@ const Signin = () => {
     const [step, setStep] = useState(1); // step 1 = email, step 2 = password
     const [error, setError] = useState('');
     const [submitting, setSubmitting] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 1000);
@@ -111,15 +112,24 @@ const Signin = () => {
 
                             <div className="flex flex-col gap-1.5 mt-2">
                                 <label className="text-sm font-bold text-gray-400">Password</label>
-                                <input
-                                    type="password"
-                                    placeholder="Your password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                    autoFocus
-                                    className="w-full bg-[#111] border border-gray-800 rounded-xl p-4 focus:border-[#0052ff] focus:ring-1 focus:ring-[#0052ff] outline-none transition-colors font-medium text-white placeholder-gray-600 shadow-sm"
-                                />
+                                <div className="relative">
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="Your password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                        autoFocus
+                                        className="w-full bg-[#111] border border-gray-800 rounded-xl p-4 pr-12 focus:border-[#0052ff] focus:ring-1 focus:ring-[#0052ff] outline-none transition-colors font-medium text-white placeholder-gray-600 shadow-sm"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors"
+                                    >
+                                        {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+                                    </button>
+                                </div>
                             </div>
 
                             {error && <p className="text-red-400 text-sm font-medium">{error}</p>}

@@ -4,9 +4,9 @@ import coinbaseBlack from '../assets/coinbase-black.png';
 import personalIcon from '../assets/signup/personal.svg';
 import businessIcon from '../assets/signup/business.svg';
 import developerIcon from '../assets/signup/developer.svg';
-import { FaCheck } from 'react-icons/fa6';
+import { FaCheck, FaEye, FaEyeSlash } from 'react-icons/fa6';
 
-const API = `${import.meta.env.VITE_API_URL}/api/auth`;
+const API = `${import.meta.env.VITE_API_URL}/auth`;
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -18,6 +18,7 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [submitting, setSubmitting] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 1500);
@@ -48,7 +49,6 @@ const Signup = () => {
             const res = await fetch(`${API}/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
                 body: JSON.stringify({ name, email, password }),
             });
             const data = await res.json();
@@ -154,16 +154,25 @@ const Signup = () => {
                                 />
                             </div>
 
-                            <div className="flex flex-col gap-1.5">
-                                <label className="text-sm font-bold text-gray-400">Password</label>
-                                <input
-                                    type="password"
-                                    placeholder="Min. 6 characters"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                    className="w-full bg-[#111] border border-gray-800 rounded-xl p-4 focus:border-[#0052ff] focus:ring-1 focus:ring-[#0052ff] outline-none transition-colors font-medium text-white placeholder-gray-600 shadow-sm"
-                                />
+                             <div className="flex flex-col gap-1.5">
+                                 <label className="text-sm font-bold text-gray-400">Password</label>
+                                 <div className="relative">
+                                     <input
+                                         type={showPassword ? "text" : "password"}
+                                         placeholder="Min. 6 characters"
+                                         value={password}
+                                         onChange={(e) => setPassword(e.target.value)}
+                                         required
+                                         className="w-full bg-[#111] border border-gray-800 rounded-xl p-4 pr-12 focus:border-[#0052ff] focus:ring-1 focus:ring-[#0052ff] outline-none transition-colors font-medium text-white placeholder-gray-600 shadow-sm"
+                                     />
+                                     <button
+                                         type="button"
+                                         onClick={() => setShowPassword(!showPassword)}
+                                         className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors"
+                                     >
+                                         {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+                                     </button>
+                                 </div>
                             </div>
 
                             {error && <p className="text-red-400 text-sm font-medium">{error}</p>}
